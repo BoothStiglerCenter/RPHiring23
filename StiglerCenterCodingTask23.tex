@@ -1,0 +1,93 @@
+\documentclass[11pt, letterpaper, twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage[margin=1in, include foot]{geometry}
+\usepackage{ragged2e}
+\usepackage[]{hyperref}
+\usepackage{apacite}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{cleveref}
+\usepackage{wrapfig}
+\usepackage{afterpage}
+\usepackage{floatrow}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{dcolumn}
+\usepackage{pdflscape}
+\usepackage{adjustbox}
+\usepackage{tablefootnote}
+\usepackage{multicol}
+
+\renewcommand{\thesubsection}{\thesection\Alph{subsection}}
+\setlength{\parindent}{0pt}
+
+\title{\textbf{Stigler Center: 2022-23 Research Professional Task}}
+\date{Fall, 2022}
+\author{George J. Stigler Center for Study of the Economy and the State\thanks{asdf}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Instructions}
+Please complete the following tasks and submit the required materials by the designated deadline. Ensure that you follow the directions carefully and submit all requested materials.
+
+\subsection*{General}
+Both the code and the results that you submit should be legible to your peers and those who would be your supervisors. That is, ensuring that your code is well-documented and well-commented; and that your written reports and data visualizations clearly convey your analysis is of the utmost importance.\\
+
+Additionally, writing manageable and reproducible code is critical for research. For each task, please write a \verb|README| that describes each of the files that you have created/used and what each does. This should be written so that a user with a technical background but with no knowledge of the task itself can understand your code and reproduce all of the output products with minimal (if any!) changes to the code itself.\\
+
+If examples are given, follow them closely. Good luck and have fun!
+
+\subsection*{Disclaimers}
+The contents of this coding activity are \textbf{confidential}. Do \textsc{not} share this document or any of the attached material with anyone. Sharing of these instructions or any associated materials will result in your immediate disqualification and may preclude you from future opportunities with the University of Chicago.
+
+\newpage
+\section{Python and Web Scraping}
+
+\subsection{\textit{American Economic Review}:}
+Using Python, collect publication data from the \textit{American Economic Review}. Using Python and your choice of packages (for example BeautifulSoup, Selenium, or re) and Pandas, collect the following information for all available issues:
+\begin{multicols}{2}
+    \begin{itemize}
+        \item Volume and issue number;
+        \item a hyperlink; and
+        \item issue-date information.
+    \end{itemize}   
+\end{multicols}
+
+Store the collected issue-level data in a \verb|.csv| file. Your resultant spreadsheet should look as follows:
+
+\textit{Inside} a folder named \verb|task1a| save your README (use any widely use text format your desire), code, and spreadsheet as follows:
+\begin{itemize}
+    \item \verb|task1a_[firstname]_[lastname]_README|
+    \item \verb|task1a_[firstname]_[lastname].csv|
+    \item \verb|task1a_[firstname]_[lastname].[py/ipynb]|
+\end{itemize}
+
+\subsection{\textit{American Economic Review}: Redux}
+Note that each article published by the \textit{American Economic Review} is labeled with JEL codes which describe to which field(s) and subfield(s) the article contributes. Each alphanumeric JEL code is associated with a human-readable description. Using the same packages as above, construct a \textit{second} spreadsheet that contains the following bibliographic information:
+
+\begin{multicols}{2}
+    \begin{itemize}
+        \item volume and issue number;
+        \item issue-date information;
+        \item the article's title;
+        \item the article's author(s);
+        \item the article's print page-numbers;
+        \item a \textit{permanent link} to the article;
+        \item the article's JEL code(s); and 
+        \item the article's JEL code description(s).
+    \end{itemize}   
+\end{multicols}
+
+
+
+
+\end{document}
