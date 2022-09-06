@@ -24,9 +24,12 @@
 \usepackage{adjustbox}
 \usepackage{tablefootnote}
 \usepackage{multicol}
+\usepackage{lipsum}
 
 \renewcommand{\thesubsection}{\thesection\Alph{subsection}}
 \setlength{\parindent}{0pt}
+\floatsetup[table]{capposition=top}
+
 
 \title{\textbf{Stigler Center: 2022-23 Research Professional Task}}
 \date{Fall, 2022}
@@ -62,11 +65,13 @@ Using Python, collect publication data from the \textit{American Economic Review
     \end{itemize}   
 \end{multicols}
 
-Store the collected issue-level data in a \verb|.csv| file. Your resultant spreadsheet should look as follows:
+Store the collected issue-level data in a \verb|.csv| file. Your resultant spreadsheet should be structured follows:
 
-\textit{Inside} a folder named \verb|task1a| save your README (use any widely use text format your desire), code, and spreadsheet as follows:
+\input{table1a_eg.tex}
+
+\textit{Inside} a folder named \verb|task1a| save your README (use any widely used text format you desire, such as markdown: \verb|.md|), code, and spreadsheet as follows:
 \begin{itemize}
-    \item \verb|task1a_[firstname]_[lastname]_README|
+    \item \verb|task1a_[firstname]_[lastname]_README.md|
     \item \verb|task1a_[firstname]_[lastname].csv|
     \item \verb|task1a_[firstname]_[lastname].[py/ipynb]|
 \end{itemize}
@@ -87,6 +92,19 @@ Note that each article published by the \textit{American Economic Review} is lab
     \end{itemize}   
 \end{multicols}
 
+Store the collected issue-JEL-code-level data in a \verb|.csv| file. Your resultant spreadsheet should be structured as follows:
+
+\textit{Inside} a folder named \verb|task1b| save your README (use any widely used text format you desire, such as plaintext: \verb|.txt|), code, and spreadsheet as follows:
+\begin{itemize}
+    \item \verb|task1b_[firstname]_[lastname]_README.txt|
+    \item \verb|task1b_[firstname]_[lastname].csv|
+    \item \verb|task1b_[firstname]_[lastname].[py/ipynb]|
+\end{itemize}
+
+\begin{landscape}
+    \thispagestyle{empty}
+    \input{table1b_eg.tex}
+\end{landscape}
 
 
 
