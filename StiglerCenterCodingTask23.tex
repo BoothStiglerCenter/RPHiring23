@@ -24,6 +24,7 @@
 \usepackage{adjustbox}
 \usepackage{tablefootnote}
 \usepackage{multicol}
+\usepackage{enumitem}
 
 
 \renewcommand{\thesubsection}{\thesection\Alph{subsection}}
@@ -34,7 +35,7 @@
 
 \title{\textbf{Stigler Center: 2022-23 Research Professional Task}}
 \date{Fall, 2022}
-\author{George J. Stigler Center for Study of the Economy and the State\thanks{asdf}}
+\author{George J. Stigler Center for Study of the Economy and the State\thanks{\href{https://www.chicagobooth.edu/research/stigler}{https://www.chicagobooth.edu/research/stigler}}}
 
 \begin{document}
 
@@ -46,27 +47,13 @@ Please complete the following tasks and submit the required materials by the des
 \subsection*{General}
 Both the code and the results that you submit should be legible to your peers and those who would be your supervisors. That is, ensuring that your code is well-documented and well-commented; and that your written reports and data visualizations clearly convey your analysis is of the utmost importance.\\
 
-Additionally, writing manageable and reproducible code is critical for research. For each task, please write a \verb|README| that describes each of the files that you have created/used and what each does. This should be written so that a user with a technical background but with no knowledge of the task itself can understand your code and reproduce all of the output products with minimal (if any!) changes to the code itself.\\
+Additionally, writing easily manageable and reproducible code is critical for research. For each task, please write a \verb|README| that describes each of the files that you have created/used and what each does. This should be written so that a user with a technical background but with no knowledge of the task itself can understand your code and reproduce all of the output products with minimal (if any!) changes to the code itself.\\
 
-When submitting your materials please submit everything as a \verb|.zip| file. The name and structure of that compressed file should be as follows:
-\begin{verbatim}
-    [firstname]_[lastname].zip
-    +-- task1a
-    |       +-- [firstname]_[lastname]_task1a_README.md
-    |       +-- [firstname]_[lastname]_task1a.csv
-    |       +-- [firstname]_[lastname]_task1a.[py/ipynb]
-    +-- task1b
-    |       +-- [firstname]_[lastname]_task1B_README.text
-    |       +-- [firstname]_[lastname]_task1b.csv
-    |       +-- [firstname]_[lastname]_task1b.[py/ipynb]
-    +-- task2
-            +-- [firstname]_[lastname]_task2.[py/ipynb]
-    
-    
-
-
-\end{verbatim}
-
+When submitting your materials please submit all your materials in a single compressed \verb|.zip| file named as follows:
+\begin{itemize}
+    \item \verb|[firstname]_[lastname].zip|
+\end{itemize}
+That \verb|.zip| file should contain three folders (\verb|task1a|, \verb|task1b|, and \verb|task2|). See below for additional submission details.
 
 If examples are given, follow them closely. Good luck and have fun!
 
@@ -78,7 +65,8 @@ The contents of this coding activity are \textbf{confidential}. Do \textsc{not} 
 \section{Python and Web Scraping}
 
 \subsection{\textit{American Economic Review}:}
-Using Python, collect publication data from the \textit{American Economic Review}. Using Python and your choice of packages (for example BeautifulSoup, Selenium, or re) and Pandas, collect the following information for all available issues:
+Using Python, collect publication data from the \textit{American Economic Review}. Using Python and your choice of packages (for example \href{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}{BeautifulSoup}, \href{https://selenium-python.readthedocs.io/}{Selenium}, or \href{https://requests.readthedocs.io/en/latest/}{requests}) and \href{https://pandas.pydata.org/docs/}{Pandas}, collect the following information for all available issues:
+
 
 \begin{itemize}
     \item Volume and issue number;
@@ -134,18 +122,19 @@ For this task feel free to use the software program/suite of your choice. Howeve
 
 For this task, you should have received  the following files:
 \begin{itemize}
-    \item a
-    \item b
-    \item c
-    \item d
-    \item e
+    \item \verb|state_chars_text.csv|
+    \item \verb|law_firms_donations.csv|
+    \item \verb|lawyers_donations.csv|
+    \item \verb|nonlaw_firms_donations.csv|
+    \item \verb|nonlaw_indivs_donations.csv|
+    \item \verb|README.md|
 \end{itemize}
 
 \subsection*{Background}
 In this short task you will conduct a preliminary analysis regarding the role of state-level institutional characteristics and donations to the electoral campaigns of state supreme court judges in the United States. In more than 20 states, state supreme court judges (the term used to describe judges who sit on that state's court of final appeal) are elected by state residents, rather than being appointed by a state executive. The merits of having elected, rather than appointed judges, are unclear. At once, elected judges both embody the virtue of being responsive to a democratic electorate and are subject to those same democratic pressures that may undermine their impartiality. 
 
 \subsubsection*{Donations}
-As with other elections in the United States, individuals and corporations can make contributions to a candidate's campaign; those contributions can be spent on making advertisements, facilitating a candidate's travel for campaigning purposes, hiring support staff, etc.\footnote{Note that direct donations to campaigns are \textit{different} from contributions to ``independent expenditure'' groups, so-called ``super PACs.''} Each state has slightly different rules about caps on donations and what must be disclosed when individuals or organization make those donations but in all states, those donations are a matter of public record.
+As with other elections in the United States, individuals and corporations can make contributions to a candidate's campaign; those contributions can be spent on making advertisements, facilitating a candidate's travel for campaigning purposes, hiring support staff, etc.\footnote{Note that direct donations to campaigns are \textit{different} from contributions to ``independent expenditure'' groups, so-called ``super PACs.''} Each state has slightly different rules about limits on donations and what must be disclosed when individuals or organization make those donations but in all states, those donations are a matter of public record.
 
 \subsubsection*{Institutional Characteristics}
 In the United States, the structure of each state's government is determined by that state's own constitution. Consequently, there is considerable variation in the characteristics of each state's judiciary. Examples of such characteristics include but are not limited to:
@@ -158,19 +147,34 @@ In the United States, the structure of each state's government is determined by 
 
 \subsection*{Task}
 
-Your objective is to reorganize and clean the provided data, perform a preliminary data analysis, and write a short report describing the results of your work. Below are limited instructions -- a fully discursive set of instructions are not provided because we are interested in seeing how you independently work to ask and answer research questions. You may use some or only some of the files provided in your anlaysis.
+Your task is to reorganize and clean the provided data, perform a preliminary data analysis, and write a short report describing the results of your work. If a task is specified in the below instructions, it must be completed. However, a fully discursive set of instructions are not provided because we are interested in seeing how you independently work to ask and answer research questions.
 
 \begin{enumerate}
-    \item 
+    \item For this task, rename variables as you wish but if you do rename variables make sure the new names are descriptive and that they are readily interpretable. 
+    \item Add three new dichotomous variables to the state-characteristics dataset. If you think the coding could be ambiguous, describe your methodology and provide a justification for your decisions.
+    \begin{enumerate}[label=\alph*.]
+        \item \verb|binding_commission|: coded as 1 if mid-term vacancies are filled by candidates suggested by a binding commission.
+        \item \verb|partisan_election|: coded as 1 if candidates face a partisan-election in their first election. 
+        \item \verb|retention|: coded as 1 if incumbent candidates face a retention election for subsequent terms.
+    \end{enumerate}
+    \item Compute the minimum, maximum, median, interquartile range, and mean donation size by individuals \textit{for each state} over all races in states that have term-lengths of 8 years. Compute the same statistics only for lawyer-individuals. Present the results in a table. 
+    \item Create a new dataframe/spreadsheet that aggregates all donations at the candidate-race level. Produce histograms that show the frequency of total-contributions by political party.
+    \item Identify the top 10 largest law firm-donors in Illinois. Compute donations as the sum of all donations to all candidates in all races in the sample. Present the firm names and the sum of their donations in a table.
+    \item Conduct some analysis to try to determine:
+    \begin{enumerate}[label=\alph*.]
+        \item if any of a state's institutional characteristics affect donation behavior; and 
+        \item whether that donation behavior affects election outcomes.
+    \end{enumerate}
+    Use summary statistics, regression analysis, and data visualization as you see fit.
 \end{enumerate}
 
-Please perform the above tasks and write a report discussing the key steps and decisions you made when exploring the data (and how those may have affected your results). Your object here is to use the data \textit{provided} to establish a compelling argument for the validity of your methodology and, therefore, whatever results you find. Your report can make use of tables with descriptive/summary statistics, data visualizations, regression analysis, or other qualitative information you see fit to include. If you do include regression analysis in your report, please ensure that each specification is at some point accompanied with an interpretation of those results.\\
+Please perform the above tasks and write a report discussing the key steps and decisions you made when exploring the data (and how those may have affected your results). Your objective here is to use the data \textit{provided} to establish a compelling argument for the validity of your methodology and, therefore, whatever results you find. Your report can make use of tables with descriptive/summary statistics, data visualizations, regression analysis, or other qualitative information you see fit to include. If you do include regression analysis in your report, please ensure that each specification is at some point accompanied with an interpretation of those results.\\
 
 Your report should also include a conclusion section that: 1) summarizes your results; 2) identifies the limitations of the dataset provided (and potentially your methodology); and 3) additional analysis you would perform if you had access to any dataset of your choice.\\
 
 \textit{Inside} a folder named \verb|task2| save all of the data files your use, your README (use any widely used text format you desire, such as PDF: \verb|.pdf|), any code you may have written to clean/analyze the data and/or compile your report, and any miscellaneous files that might be required to reproduce your report from scratch. Please ensure that your report is submitted as a widely used text format. Acceptable file types include \verb|.docx|, \verb|.pdf|, \verb|.md| etc. Ensure that your \textit{report} is named as follows.
 \begin{itemize}
-    \item \verb|task2_report_[firstname]_[lastname].[pdf/docx]|
+    \item \verb|task2_report_[firstname]_[lastname].[pdf/docx/md]|
 \end{itemize}
 Other auxillary files should follow a similar convention but can be named as you see fit.
 
