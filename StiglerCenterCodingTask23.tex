@@ -118,26 +118,25 @@ Store the collected issue-JEL-code-level data in a \verb|.csv| file. Your result
 
 \section{Data Analysis}
 
-For this task feel free to use the software program/suite of your choice. However, for purposes of reproudcibility, Stata, R, or Python are preferred.
+For this task feel free to use the software program/suite of your choice. However, for purposes of reproducibility, Stata, R, or Python are preferred.
 
-For this task, you should have received  the following files:
+For this task, you should have received the following files\footnote{These files might require some cleaning before use. Make sure to keep copies of the originals so that your work can by replicated!}:
 \begin{itemize}
-    \item \verb|state_chars_text.csv|
-    \item \verb|law_firms_donations.csv|
-    \item \verb|lawyers_donations.csv|
-    \item \verb|nonlaw_firms_donations.csv|
-    \item \verb|nonlaw_indivs_donations.csv|
-    \item \verb|README.md|
+    \item \verb|state_chars_text.csv|: some information about state-level institutional characteristics
+    \item \verb|law_firms_donations.csv|: donations data -- donations made by \textit{lawfirms}
+    \item \verb|lawyers_donations.csv|: donations data -- donations made by \textit{lawyers}
+    \item \verb|nonlaw_firms_donations.csv| donations data -- donations made by non-lawfirm \textit{firms}
+    \item \verb|nonlaw_indivs_donations.csv| donations data -- donations made by non-lawyer \textit{individuals} 
 \end{itemize}
 
 \subsection*{Background}
 In this short task you will conduct a preliminary analysis regarding the role of state-level institutional characteristics and donations to the electoral campaigns of state supreme court judges in the United States. In more than 20 states, state supreme court judges (the term used to describe judges who sit on that state's court of final appeal) are elected by state residents, rather than being appointed by a state executive. The merits of having elected, rather than appointed judges, are unclear. At once, elected judges both embody the virtue of being responsive to a democratic electorate and are subject to those same democratic pressures that may undermine their impartiality. 
 
 \subsubsection*{Donations}
-As with other elections in the United States, individuals and corporations can make contributions to a candidate's campaign; those contributions can be spent on making advertisements, facilitating a candidate's travel for campaigning purposes, hiring support staff, etc.\footnote{Note that direct donations to campaigns are \textit{different} from contributions to ``independent expenditure'' groups, so-called ``super PACs.''} Each state has slightly different rules about limits on donations and what must be disclosed when individuals or organization make those donations but in all states, those donations are a matter of public record.
+As with other elections in the United States, individuals and corporations can make contributions to a candidate's campaign; those contributions can be spent on making advertisements, facilitating a candidate's travel for campaigning purposes, hiring support staff, etc.\footnote{Note that direct donations to campaigns are \textit{different} from contributions to ``independent expenditure'' groups, so-called ``super PACs.'' Donation data is for individuals and firms has been separated because different contribution limits may apply.} Each state has slightly different rules about limits on donations and what must be disclosed when individuals or organization make those donations but in all states, those donations are a matter of public record.
 
 \subsubsection*{Institutional Characteristics}
-In the United States, the structure of each state's government is determined by that state's own constitution. Consequently, there is considerable variation in the characteristics of each state's judiciary. Examples of such characteristics include but are not limited to:
+In the United States, the structure of each state's government is determined by that state's own constitution. Consequently, there is considerable variation in the characteristics of each state's judiciary.\footnote{For a bit more background or detail, follow \href{https://www.brennancenter.org/judicial-selection-map}{this link.}} Examples of such characteristics include but are not limited to:
 \begin{itemize}
     \item Initial selection method. Some states' supreme court judges are only ever appointed by the executive. Others must win election.
     \item Subsequent selection method. In some states, judges can serve until retirement age or for life. In others, judges must consistently run for re-election. The types of those re-election competitions also vary from state to state.
@@ -158,8 +157,9 @@ Your task is to reorganize and clean the provided data, perform a preliminary da
         \item \verb|retention|: coded as 1 if incumbent candidates face a retention election for subsequent terms.
     \end{enumerate}
     \item Compute the minimum, maximum, median, interquartile range, and mean donation size by individuals \textit{for each state} over all races in states that have term-lengths of 8 years. Compute the same statistics only for lawyer-individuals. Present the results in a table. 
-    \item Create a new dataframe/spreadsheet that aggregates all donations at the candidate-race level. Produce histograms that show the frequency of total-contributions by political party.
-    \item Identify the top 10 largest law firm-donors in Illinois. Compute donations as the sum of all donations to all candidates in all races in the sample. Present the firm names and the sum of their donations in a table.
+    \item Create a new dataframe/spreadsheet that aggregates all donations at the candidate-race level. Produce histograms that show the frequency of total-contributions by the candidates' political party affiliation.
+    \item Identify the top 10 largest law firm donors in Illinois. Compute a law firm's donations as the sum of all donations to all candidates in all races in the sample. Present the firm names and the sum of their donations in a table.
+    \item Identify the top 10 largest non-lawyer-individual donors who donated at least once to any race in a state that has a statutory/constitutional provision to run retention elections for a judge's subsequent terms. Compute an individual's donations as the sum of all donations to all candidates in all races in the sample. Present the individual names, the states in which they donated to races, and the sum of their donations in a table.\footnote{Hint: your table should only contain 10 rows.} 
     \item Conduct some analysis to try to determine:
     \begin{enumerate}[label=\alph*.]
         \item if any of a state's institutional characteristics affect donation behavior; and 
@@ -172,7 +172,7 @@ Please perform the above tasks and write a report discussing the key steps and d
 
 Your report should also include a conclusion section that: 1) summarizes your results; 2) identifies the limitations of the dataset provided (and potentially your methodology); and 3) additional analysis you would perform if you had access to any dataset of your choice.\\
 
-\textit{Inside} a folder named \verb|task2| save all of the data files your use, your README (use any widely used text format you desire, such as PDF: \verb|.pdf|), any code you may have written to clean/analyze the data and/or compile your report, and any miscellaneous files that might be required to reproduce your report from scratch. Please ensure that your report is submitted as a widely used text format. Acceptable file types include \verb|.docx|, \verb|.pdf|, \verb|.md| etc. Ensure that your \textit{report} is named as follows.
+\textit{Inside} a folder named \verb|task2| save all of the data files you use, your README (use any widely used text format you desire, such as PDF: \verb|.pdf|), any code you may have written to clean/analyze the data and/or compile your report, and any miscellaneous files that might be required to reproduce your report from scratch. Please ensure that your report is submitted as a widely used text format. Acceptable file types include \verb|.docx|, \verb|.pdf|, \verb|.md| etc. Ensure that your \textit{report} is named as follows.
 \begin{itemize}
     \item \verb|task2_report_[firstname]_[lastname].[pdf/docx/md]|
 \end{itemize}
