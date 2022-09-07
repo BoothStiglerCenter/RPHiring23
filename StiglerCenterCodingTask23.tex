@@ -24,11 +24,12 @@
 \usepackage{adjustbox}
 \usepackage{tablefootnote}
 \usepackage{multicol}
-\usepackage{lipsum}
+
 
 \renewcommand{\thesubsection}{\thesection\Alph{subsection}}
 \setlength{\parindent}{0pt}
 \floatsetup[table]{capposition=top}
+
 
 
 \title{\textbf{Stigler Center: 2022-23 Research Professional Task}}
@@ -47,23 +48,44 @@ Both the code and the results that you submit should be legible to your peers an
 
 Additionally, writing manageable and reproducible code is critical for research. For each task, please write a \verb|README| that describes each of the files that you have created/used and what each does. This should be written so that a user with a technical background but with no knowledge of the task itself can understand your code and reproduce all of the output products with minimal (if any!) changes to the code itself.\\
 
+When submitting your materials please submit everything as a \verb|.zip| file. The name and structure of that compressed file should be as follows:
+\begin{verbatim}
+    [firstname]_[lastname].zip
+    +-- task1a
+    |       +-- [firstname]_[lastname]_task1a_README.md
+    |       +-- [firstname]_[lastname]_task1a.csv
+    |       +-- [firstname]_[lastname]_task1a.[py/ipynb]
+    +-- task1b
+    |       +-- [firstname]_[lastname]_task1B_README.text
+    |       +-- [firstname]_[lastname]_task1b.csv
+    |       +-- [firstname]_[lastname]_task1b.[py/ipynb]
+    +-- task2
+            +-- [firstname]_[lastname]_task2.[py/ipynb]
+    
+    
+
+
+\end{verbatim}
+
+
 If examples are given, follow them closely. Good luck and have fun!
 
 \subsection*{Disclaimers}
 The contents of this coding activity are \textbf{confidential}. Do \textsc{not} share this document or any of the attached material with anyone. Sharing of these instructions or any associated materials will result in your immediate disqualification and may preclude you from future opportunities with the University of Chicago.
 
 \newpage
+
 \section{Python and Web Scraping}
 
 \subsection{\textit{American Economic Review}:}
 Using Python, collect publication data from the \textit{American Economic Review}. Using Python and your choice of packages (for example BeautifulSoup, Selenium, or re) and Pandas, collect the following information for all available issues:
-\begin{multicols}{2}
-    \begin{itemize}
-        \item Volume and issue number;
-        \item a hyperlink; and
-        \item issue-date information.
-    \end{itemize}   
-\end{multicols}
+
+\begin{itemize}
+    \item Volume and issue number;
+    \item a hyperlink; and
+    \item issue-date information.
+\end{itemize}   
+
 
 Store the collected issue-level data in a \verb|.csv| file. Your resultant spreadsheet should be structured follows:
 
@@ -105,6 +127,8 @@ Store the collected issue-JEL-code-level data in a \verb|.csv| file. Your result
     \thispagestyle{empty}
     \input{table1b_eg.tex}
 \end{landscape}
+
+
 
 
 

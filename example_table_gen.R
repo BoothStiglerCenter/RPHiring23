@@ -22,7 +22,7 @@ table1a_eg_df <- data.frame(
     link_1a_col,
     issue_date_1a_col
 )
-table1a_eg_df[nrow(table1a_eg_df), ] <- c("...", "...", "...")
+table1a_eg_df[nrow(table1a_eg_df)+1, ] <- c("...", "...", "...")
 colnames(table1a_eg_df) <- gsub("_1a_col", "", colnames(table1a_eg_df))
 
 
@@ -113,7 +113,7 @@ table1b_eg_df <- data.frame(
     jel_description_1b_col
 )
 
-table1b_eg_df[nrow(table1b_eg_df), ] <- c("...", "...", "...", "...", "...", "...", "...", "...")
+table1b_eg_df[nrow(table1b_eg_df) + 1, ] <- c("...", "...", "...", "...", "...", "...", "...", "...")
 colnames(table1b_eg_df) <- gsub("_1b_col", "", colnames(table1b_eg_df))
 
 #### Table column alignment should be modified from
