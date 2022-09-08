@@ -54,6 +54,7 @@ master_df
 
 
 master_df['article_title'] = 'xxx'
+master_df['authors'] = 'xxx'
 master_df['page_numbers'] = 'xxx'
 master_df['article_link'] = 'xxx'
 master_df['jel_code'] = 'xxx'
@@ -69,8 +70,62 @@ def title_gen(match_text: str):
     return title
 
 def authors_gen(match_text: str):
+    author_pattern = r'<li class=\'author\'(.+?)>(.+?)\s+(.+?)(\s+?)</li>'
+    author_element_match_list = re.findall(
+        author_pattern,
+        match_text,
+        re.DOTALL
+    )
+    author_list = [element[2] for element in author_element_match_list]
+    author_pretty_string = '; '.join(author_list)
+    print(author_pretty_string)
+    return author_pretty_string
 
-    return
+def pages_gen(match_text: str):
+    pages_pattern = r'\((pp\. .+?)\)'
+    pages_string = re.search(pages_pattern, match_text)[1]
+    print(pages_string)
+    return pages_string
+
+def doi_link_gen(match_text: str):
+    doi_pattern = r'<span class=\"doi\">DOI: (.+?)</span>'
+    doi = re.search(doi_pattern, match_text)[1]
+    pretty_doi_link = 'https://doi.org/{}'.format(doi)
+    print(pretty_doi_link)
+    return pretty_doi_link
+
+def jel_generator(match_text: str):
+    jel_section_pattern = r'<ul class=\'jel-codes\'>(.+?)</ul>'
+    jel_section_string = re.search(jel_section_pattern,
+        match_text,
+        re.DOTALL
+    )
+
+    if jel_section_string is None:
+        print("NO JEL CODES")
+        return None, None
+
+    code_desc_pattern = r'<strong class=\'code\'>(.+?)</strong>\n\s+(.+?)\n'
+    code_desc_element_match_list = re.findall(
+        code_desc_pattern,
+        jel_section_string[1],
+        re.DOTALL
+    )
+
+    jel_codes_list = []
+    jel_descs_list = []
+    for element in code_desc_element_match_list:
+        jel_code = element[0]
+        jel_desc = element[1]
+        jel_codes_list.append(jel_code)
+        jel_descs_list.append(jel_desc)
+
+    if len(jel_codes_list) != len(jel_descs_list):
+        raise ValueError("JEL Codes and Descriptions aren't properly matching")
+
+    print(jel_codes_list)
+    print(jel_descs_list)
+    return jel_codes_list, jel_descs_list
 
 
 for index, article in master_df.iterrows():
@@ -81,8 +136,30 @@ for index, article in master_df.iterrows():
     )
     article_page_html = article_response.content.decode('utf-8')
 
-    title_gen(article_page_html)
+    master_df.loc[index, 'article_title'] = title_gen(article_page_html)
+
+    master_df.loc[index, 'authors'] = authors_gen(article_page_html)
+
+    master_df.loc[index, 'page_numbers'] = pages_gen(article_page_html)   
+
+    master_df.loc[index, 'article_link'] = doi_link_gen(article_page_html)
+
+    master_df.at[index, 'jel_code'], master_df.at[index, 'jel_desc'] = jel_generator(article_page_html)
+    time.sleep(0.1)
 
 
 
 
+
+#### PART 3: REFORMAT MASTER_DF ####
+### Prepare the master_df to conform to requirements/task specifications
+out_df = master_df.explode(['jel_code', 'jel_desc'])
+out_df = out_df[['volume', 'issue_date', 'article_title', 'authors', 'page_numbers', 'article_link', 'jel_code', 'jel_description']]
+
+
+#### PART 4: REMOVING NON-OBSERVATIONS ####
+
+
+
+
+out_df.to_csv('task1b_joshua_levy.csv', index=False, encoding='utf-8')
