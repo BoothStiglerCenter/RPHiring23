@@ -7,13 +7,24 @@ task_scores_df = pd.read_csv('qwer')
 
 task1a_answer_key_df = pd.read_csv('1243')
 task1b_answer_key_df = pd.read_csv('5678')
+task1b_misc_df = pd.read_csv('9012')
 
 ### First, identify if there are any new tasks to be scored.
 def candidates_to_score(status_df: pd.DataFrame) -> pd.DataFrame:
     to_score_df = status_df.copy()
     to_score_df = to_score_df[to_score_df.task1a == 2 | to_score_df.task1b == 2]
 
-    return to_score_df
+    return to_score_df.iterrows()
+
+def update_score_status(status_df: pd.DataFrame, candidate_name: str):
+    updated_status_df = status_df.copy()
+
+    updated_status_df.loc[updated_status_df.candidate_name == candidate_name, 'task1a'] = 3
+    updated_status_df.loc[updated_status_df.candidate_name == candidate_name, 'task1b'] = 3
+
+    updated_status_df.to_csv('asdf', index=False, encoding='utf-8')
+
+    return
 
 
 ### Scoring functions
@@ -149,12 +160,12 @@ def df_misc_check(misc_sample: dict, submission_df: pd.DataFrame) -> float:
         misc_value = misc_sample.get(column)
         test_df = submission_df[submission_df[column]== misc_value]
         if len(test_df) > 0:
-            penalty += 
+            penalty += 1
 
     score = 5 - penalty
     return score
 
-
+# Score structuring functions
 def score_task1a(firstname: str, lastname: str) -> dict:
     """"
     This function identifies a submitted .csv based on the the passed first and last names, and returns a dictionary of sub-scores for Task 1a
@@ -168,6 +179,7 @@ def score_task1a(firstname: str, lastname: str) -> dict:
         'task1a_cols' : 0,
         'task1a_obs_count' : 0,
         'task1a_sample_check' : 0,
+        'task1a_TOTAL' : 0
     }
 
     ### Identify the submission (create_path)
@@ -179,7 +191,7 @@ def score_task1a(firstname: str, lastname: str) -> dict:
 
 
     # SCORING FUNCTIONS CALLED
-    task1a_sub_scores['taska1a_cols'] = col_check(
+    task1a_sub_scores['task1a_cols'] = col_check(
         taskname = 'Task 1a',
         answer_cols = set(list(task1a_answer_key_df.columns)),
         submission_cols = set(list(task1a_submitted_df.columns))
@@ -197,6 +209,9 @@ def score_task1a(firstname: str, lastname: str) -> dict:
         submission_df = task1a_submitted_df
     )
 
+    task1a_sub_scores['task1a_TOTAL'] = sum([task1a_sub_scores.get(sub_score) for sub_score in task1a_sub_scores.keys()])
+
+
     return task1a_sub_scores
 
 def score_task1b(firstname: str, lastname: str) -> dict:
@@ -207,12 +222,66 @@ def score_task1b(firstname: str, lastname: str) -> dict:
     :param lastname: A lowercase string
     :return: A dictionary of sub-scores 
     """
-
+    
     task1b_sub_scores = {
         'task1b_cols' : 0,
         'task1b_obs_count' : 0,
         'task1b_sample_check' : 0,
-        'task1b_misc_check' : 0
+        'task1b_misc_check' : 0,
+        'task1b_TOTAL' : 0
     }
 
+    task1b_csv_path = 'FODLERX/FOLDERY/{firstname}_{lastname}/task1b/task1b_{firstname}_{lastname}.csv'.format(
+        firstname = firstname,
+        lastname = lastname
+    )
+    task1b_submitted_df = pd.read_csv(task1b_csv_path)
+    
+    # SCORING FUNCTIONS CALLED
+    task1b_sub_scores['task1b_cols'] = col_check(
+        taskname = 'Task 1b',
+        answer_cols = set(list(task1b_answer_key_df.columns)),
+        submission_cols = set(list(task1b_submitted_df.columns))
+    )
+
+    task1b_sub_scores['task1b_obs_count'] = df_length_check(
+        taskname = 'Task 1b',
+        answer_df = task1b_answer_key_df,
+        submission_df = task1b_submitted_df,
+    )
+
+    task1b_sub_scores['task1b_sample_check'] = df_length_check(
+        taskname = 'Task 1b',
+        answer_sample = task1b_answer_key_df.sample(n=100, random_state=random_state_seed),
+        submission_df = task1b_submitted_df
+    )
+    task1b_sub_scores['task1b_misc_check'] = df_misc_check(
+        misc_sample = task1b_misc_df.sample(n=100, random_state=random_state_seed),
+        submission_df = task1b_submitted_df
+    )
+
+    task1b_sub_scores['task1b_TOTAL'] = sum([task1b_sub_scores.get(sub_score) for sub_score in task1b_sub_scores.keys()])
+
     return task1b_sub_scores
+
+
+
+for index, candidate in candidates_to_score(task_status_df):
+
+    candidate_firstname = candidate.firstname
+    candidate_lastname = candidate.lastname
+    candidate_name = '_'.join([candidate_firstname, candidate_lastname])
+
+    task1a_scores_dict = score_task1a(candidate_firstname, candidate_lastname)
+    task1b_scores_dict = score_task1b(candidate_firstname, candidate_lastname)
+
+    for sub_score in task1a_scores_dict.keys():
+        task_scores_df.loc[candidate_name, sub_score] = task1a_scores_dict.get(sub_score)
+    
+    for sub_score in task1b_scores_dict.keys():
+        task_scores_df.loc[candidate_name, sub_score] = task1b_scores_dict.get(sub_score)
+    
+
+
+    task_scores_df.to_csv('qwer', index=True, encoding='utf-8')
+    update_score_status()
