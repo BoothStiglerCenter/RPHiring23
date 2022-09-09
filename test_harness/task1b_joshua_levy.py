@@ -6,10 +6,8 @@ import re
 #### PART 1: Collect links to all articles ####
 # Read in task1a results to get links to each issue-page
 
-task1a_df = pd.read_csv('test_harness/task1a_joshua_levy.csv')
+task1a_df = pd.read_csv('task1a_joshua_levy.csv')
 
-# TODO: REMOVE THIS SUBSET TOOL
-task1a_df = task1a_df.head(5)
 
 master_df = task1a_df.copy()
 master_df['article_temp_link'] = 'a'
@@ -36,13 +34,29 @@ for index, issue in task1a_df.iterrows():
     running_article_count += articles_for_issue
     print("Articles for issue ({}): {}".format(issue_desc, articles_for_issue))
 
-    article_link_pattern = r'<a href=\"(.+)\"'
+    article_link_pattern_new = r'<a href=\"(.+?)\"'
+    article_link_pattern_old = r'id=(\'|\")(.+?)(\'|\")'
 
     article_temp_link_list = []
     for article_block in article_block_list:
-        link = re.search(article_link_pattern, article_block)[1]
-        pretty_temp_link = 'https://www.aeaweb.org{}'.format(link)
-        article_temp_link_list.append(pretty_temp_link)
+        try:
+            link = re.search(article_link_pattern_new, article_block)[1]
+            pretty_temp_link = 'https://www.aeaweb.org{}'.format(link)
+            article_temp_link_list.append(pretty_temp_link)
+        except:
+            try: 
+                exception_patterns= r'symposia-title|display:none'
+                if re.search(exception_patterns, article_block):
+                    continue 
+
+                link = re.search(article_link_pattern_old, article_block)[2]
+                pretty_temp_link = 'https://www.aeaweb.org/articles?id={}'.format(link)
+                article_temp_link_list.append(pretty_temp_link)
+            except:
+                print('NEED TO CHECKOUT ISSUE: {}'.format(issue_desc))
+                print(article_block)
+                continue
+
 
     master_df.at[index, 'article_temp_link'] = article_temp_link_list
 
@@ -58,10 +72,10 @@ master_df['authors'] = 'xxx'
 master_df['page_numbers'] = 'xxx'
 master_df['article_link'] = 'xxx'
 master_df['jel_code'] = 'xxx'
-master_df['jel_desc'] = 'xxx'
+master_df['jel_description'] = 'xxx'
 
 master_df['jel_code'] = master_df['jel_code'].astype('object')
-master_df['jel_desc'] = master_df['jel_desc'].astype('object')
+master_df['jel_description'] = master_df['jel_description'].astype('object')
 
 #### PART 2: Collecting article level-data
 def title_gen(match_text: str):
@@ -82,7 +96,7 @@ def authors_gen(match_text: str):
     return author_pretty_string
 
 def pages_gen(match_text: str):
-    pages_pattern = r'\((pp\. .+?)\)'
+    pages_pattern = r'\((p?p\. .+?)\)'
     pages_string = re.search(pages_pattern, match_text)[1]
     print(pages_string)
     return pages_string
@@ -144,7 +158,7 @@ for index, article in master_df.iterrows():
 
     master_df.loc[index, 'article_link'] = doi_link_gen(article_page_html)
 
-    master_df.at[index, 'jel_code'], master_df.at[index, 'jel_desc'] = jel_generator(article_page_html)
+    master_df.at[index, 'jel_code'], master_df.at[index, 'jel_description'] = jel_generator(article_page_html)
     time.sleep(0.1)
 
 
@@ -153,13 +167,21 @@ for index, article in master_df.iterrows():
 
 #### PART 3: REFORMAT MASTER_DF ####
 ### Prepare the master_df to conform to requirements/task specifications
-out_df = master_df.explode(['jel_code', 'jel_desc'])
+out_df = master_df.explode(['jel_code', 'jel_description'])
 out_df = out_df[['volume', 'issue_date', 'article_title', 'authors', 'page_numbers', 'article_link', 'jel_code', 'jel_description']]
-
+out_df = out_df.reset_index(drop=True)
 
 #### PART 4: REMOVING NON-OBSERVATIONS ####
+## We remove everything that has either None, Y10, Y20, or Y90 in the 'jel_code' column
 
+### Joshua needs to keep these misc observations for scoring purposes.
+misc_jel_codes = [None, 'Y10', 'Y20', 'Y90']
+misc_df = out_df.copy()
+misc_df = misc_df[misc_df['jel_code'].isin(misc_jel_codes)]
+misc_df = misc_df.reset_index(drop=True)
+misc_df.to_csv('task1b_joshua_levy_MISC_OBS.csv', index=False, encoding='utf-8')
 
-
+out_df = out_df = out_df[~out_df['jel_code'].isin(misc_jel_codes)]
+out_df = out_df.reset_index(drop=True)
 
 out_df.to_csv('task1b_joshua_levy.csv', index=False, encoding='utf-8')
