@@ -1,1 +1,6 @@
 **/*.csv
+**/*.docx
+
+### IMPORTANT TO NOT LEAKING PERSONAL ANSWERS:
+test_harness/task1a_joshua_levy.py
+test_harness/task1b_joshua_levy.py
