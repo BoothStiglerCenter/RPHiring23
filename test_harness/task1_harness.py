@@ -12,15 +12,15 @@ task1b_misc_df = pd.read_csv('9012')
 ### First, identify if there are any new tasks to be scored.
 def candidates_to_score(status_df: pd.DataFrame) -> pd.DataFrame:
     to_score_df = status_df.copy()
-    to_score_df = to_score_df[to_score_df.task1a == 2 | to_score_df.task1b == 2]
+    to_score_df = to_score_df[to_score_df.task1a_status == 2 | to_score_df.task1b_status == 2]
 
     return to_score_df.iterrows()
 
 def update_score_status(status_df: pd.DataFrame, candidate_name: str):
     updated_status_df = status_df.copy()
 
-    updated_status_df.loc[updated_status_df.candidate_name == candidate_name, 'task1a'] = 3
-    updated_status_df.loc[updated_status_df.candidate_name == candidate_name, 'task1b'] = 3
+    updated_status_df.loc[updated_status_df.candidate_name == candidate_name, 'task1a_status'] = 3
+    updated_status_df.loc[updated_status_df.candidate_name == candidate_name, 'task1b_status'] = 3
 
     updated_status_df.to_csv('asdf', index=False, encoding='utf-8')
 
