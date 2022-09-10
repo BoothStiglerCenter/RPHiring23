@@ -2,12 +2,12 @@ import os
 import pandas as pd
 
 random_state_seed = 987654321
-task_status_df = pd.read_csv('asdf')
-task_scores_df = pd.read_csv('qwer')
+task_status_df = pd.read_csv('task_status.csv')
+task_scores_df = pd.read_csv('task_scores.csv')
 
-task1a_answer_key_df = pd.read_csv('1243')
-task1b_answer_key_df = pd.read_csv('5678')
-task1b_misc_df = pd.read_csv('9012')
+task1a_answer_key_df = pd.read_csv('task1a_joshua_levy.csv')
+task1b_answer_key_df = pd.read_csv('task1b_joshua_levy.csv')
+task1b_misc_df = pd.read_csv('task1b_joshua_levy_MISC_OBS.csv')
 
 ### First, identify if there are any new tasks to be scored.
 def candidates_to_score(status_df: pd.DataFrame) -> pd.DataFrame:
@@ -22,7 +22,7 @@ def update_score_status(status_df: pd.DataFrame, candidate_name: str):
     updated_status_df.loc[updated_status_df.candidate_name == candidate_name, 'task1a_status'] = 3
     updated_status_df.loc[updated_status_df.candidate_name == candidate_name, 'task1b_status'] = 3
 
-    updated_status_df.to_csv('asdf', index=False, encoding='utf-8')
+    updated_status_df.to_csv('task_status.csv', index=False, encoding='utf-8')
 
     return
 
@@ -284,5 +284,5 @@ for index, candidate in candidates_to_score(task_status_df):
     
 
 
-    task_scores_df.to_csv('qwer', index=True, encoding='utf-8')
+    task_scores_df.to_csv('task_scores.csv', index=True, encoding='utf-8')
     update_score_status()
