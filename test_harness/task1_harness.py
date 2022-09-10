@@ -275,6 +275,7 @@ for index, candidate in candidates_to_score(task_status_df):
     task1a_scores_dict = score_task1a(candidate_firstname, candidate_lastname)
     task1b_scores_dict = score_task1b(candidate_firstname, candidate_lastname)
 
+    print('SCORING {}:'.format(candidate_name.upper()))
     for sub_score in task1a_scores_dict.keys():
         task_scores_df.loc[candidate_name, sub_score] = task1a_scores_dict.get(sub_score)
     
