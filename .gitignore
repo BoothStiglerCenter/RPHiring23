@@ -4,3 +4,6 @@
 ### IMPORTANT TO NOT LEAKING PERSONAL ANSWERS:
 test_harness/task1a_joshua_levy.py
 test_harness/task1b_joshua_levy.py
+test_harness/task2_*
+task2_answers.pdf
+task2_answers.tex
