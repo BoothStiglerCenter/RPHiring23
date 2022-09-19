@@ -13,9 +13,9 @@ link_1a_col <- c(
     "https://www.aeaweb.org/issues/685"
 )
 issue_date_1a_col <- c(
-    "September 2022 (Vol. 112, No.9)",
-    "August 2022 (Vol. 112, No.8)",
-    "July 2022 (Vol. 112, No.7)"
+    "September 2022 (Vol. 112, No.9 )",
+    "August 2022 (Vol. 112, No.8 )",
+    "July 2022 (Vol. 112, No.7 )"
 )
 table1a_eg_df <- data.frame(
     volume_1a_col,
@@ -39,13 +39,13 @@ volume_1b_col <- c(
     "Volume 112"
 )
 issue_date_1b_col <- c(
-    "September 2022 (Vol. 112, No.9)",
-    "September 2022 (Vol. 112, No.9)",
-    "September 2022 (Vol. 112, No.9)",
-    "September 2022 (Vol. 112, No.9)",
-    "September 2022 (Vol. 112, No.9)",
-    "September 2022 (Vol. 112, No.9)",
-    "September 2022 (Vol. 112, No.9)"
+    "September 2022 (Vol. 112, No.9 )",
+    "September 2022 (Vol. 112, No.9 )",
+    "September 2022 (Vol. 112, No.9 )",
+    "September 2022 (Vol. 112, No.9 )",
+    "September 2022 (Vol. 112, No.9 )",
+    "September 2022 (Vol. 112, No.9 )",
+    "September 2022 (Vol. 112, No.9 )"
 )
 article_title_1b_col <- c(
     "Belief Elicitation and Behavioral Incentive Compatibility",

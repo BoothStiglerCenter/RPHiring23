@@ -33,7 +33,7 @@
 
 
 
-\title{\textbf{Stigler Center: 2022-23 Research Professional Task}}
+\title{\textbf{Stigler Center: 2022-23 Research Professional Coding Task}}
 \date{Fall, 2022}
 \author{George J. Stigler Center for Study of the Economy and the State\thanks{\href{https://www.chicagobooth.edu/research/stigler}{https://www.chicagobooth.edu/research/stigler}}}
 
@@ -53,7 +53,7 @@ When submitting your materials please submit all your materials in a single comp
 \begin{itemize}
     \item \verb|[firstname]_[lastname].zip|
 \end{itemize}
-That \verb|.zip| file should contain three folders (\verb|task1a|, \verb|task1b|, and \verb|task2|). See below for additional submission details.
+That \verb|.zip| file should contain three folders (\verb|task1a|, \verb|task1b|, and \verb|task2|). See below for additional submission details. Please ensure that all filenames are all lowercase.\\
 
 If examples are given, follow them closely. Good luck and have fun!
 
@@ -64,12 +64,12 @@ The contents of this coding activity are \textbf{confidential}. Do \textsc{not} 
 
 \section{Python and Web Scraping}
 
-\subsection{\textit{American Economic Review}:}
+\subsection{\textit{American Economic Review}}
 Using Python, collect publication data from the \textit{American Economic Review}. Using Python and your choice of packages (for example \href{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}{BeautifulSoup}, \href{https://selenium-python.readthedocs.io/}{Selenium}, or \href{https://requests.readthedocs.io/en/latest/}{requests}) and \href{https://pandas.pydata.org/docs/}{Pandas}, collect the following information for all available issues:
 
 
 \begin{itemize}
-    \item Volume and issue number;
+    \item Volume number;
     \item a hyperlink; and
     \item issue-date information.
 \end{itemize}   
@@ -102,7 +102,7 @@ Note that each article published by the \textit{American Economic Review} is lab
     \end{itemize}   
 \end{multicols}
 
-Store the collected issue-JEL-code-level data in a \verb|.csv| file. Your resultant spreadsheet should be structured as follows:
+Store the collected issue-JEL-code-level data in a \verb|.csv| file.\footnote{Hint: make sure that you only collect \textit{scholarly} articles -- check the list of JEL codes carefully!} Your resultant spreadsheet should be structured as below:\\
 
 \textit{Inside} a folder named \verb|task1b| save your README (use any widely used text format you desire, such as plaintext: \verb|.txt|), code, and spreadsheet as follows:
 \begin{itemize}
@@ -123,7 +123,7 @@ For this task feel free to use the software program/suite of your choice. Howeve
 For this task, you should have received the following files\footnote{These files might require some cleaning before use. Make sure to keep copies of the originals so that your work can by replicated!}:
 \begin{itemize}
     \item \verb|state_chars_text.csv|: some information about state-level institutional characteristics
-    \item \verb|law_firms_donations.csv|: donations data -- donations made by \textit{lawfirms}
+    \item \verb|law_firms_donations.csv|: donations data -- donations made by \textit{law firms}
     \item \verb|lawyers_donations.csv|: donations data -- donations made by \textit{lawyers}
     \item \verb|nonlaw_firms_donations.csv| donations data -- donations made by non-lawfirm \textit{firms}
     \item \verb|nonlaw_indivs_donations.csv| donations data -- donations made by non-lawyer \textit{individuals} 
@@ -133,7 +133,7 @@ For this task, you should have received the following files\footnote{These files
 In this short task you will conduct a preliminary analysis regarding the role of state-level institutional characteristics and donations to the electoral campaigns of state supreme court judges in the United States. In more than 20 states, state supreme court judges (the term used to describe judges who sit on that state's court of final appeal) are elected by state residents, rather than being appointed by a state executive. The merits of having elected, rather than appointed judges, are unclear. At once, elected judges both embody the virtue of being responsive to a democratic electorate and are subject to those same democratic pressures that may undermine their impartiality. 
 
 \subsubsection*{Donations}
-As with other elections in the United States, individuals and corporations can make contributions to a candidate's campaign; those contributions can be spent on making advertisements, facilitating a candidate's travel for campaigning purposes, hiring support staff, etc.\footnote{Note that direct donations to campaigns are \textit{different} from contributions to ``independent expenditure'' groups, so-called ``super PACs.'' Donation data is for individuals and firms has been separated because different contribution limits may apply.} Each state has slightly different rules about limits on donations and what must be disclosed when individuals or organization make those donations but in all states, those donations are a matter of public record.
+As with other elections in the United States, individuals and corporations can make contributions to a candidate's campaign; those contributions can be spent on making advertisements, facilitating a candidate's travel for campaigning purposes, hiring support staff, etc.\footnote{Note that direct donations to campaigns are \textit{different} from contributions to ``independent expenditure'' groups, so-called ``super PACs.'' Donation data is for individuals and firms has been separated because different contribution limits may apply.} Each state has slightly different rules about limits on donations and what must be disclosed when individuals or organization make those donations but in all states, those donations are a matter of public record. You have been provided with data that tracks donations to candidates who ran for a state supreme court seat between 1996 and 2016.
 
 \subsubsection*{Institutional Characteristics}
 In the United States, the structure of each state's government is determined by that state's own constitution. Consequently, there is considerable variation in the characteristics of each state's judiciary.\footnote{For a bit more background or detail, follow \href{https://www.brennancenter.org/judicial-selection-map}{this link.}} Examples of such characteristics include but are not limited to:
@@ -143,6 +143,7 @@ In the United States, the structure of each state's government is determined by 
     \item The length of the terms (and if there is a limit to the number of terms) that supreme court judges can serve.
     \item The number of judges who serve on the state's supreme court bench at any time.
 \end{itemize}
+You have been provided with a spreadsheet that contains various state-level institutional characteristics. 
 
 \subsection*{Task}
 
@@ -156,9 +157,9 @@ Your task is to reorganize and clean the provided data, perform a preliminary da
         \item \verb|partisan_election|: coded as 1 if candidates face a partisan-election in their first election. 
         \item \verb|retention|: coded as 1 if incumbent candidates face a retention election for subsequent terms.
     \end{enumerate}
-    \item Compute the minimum, maximum, median, interquartile range, and mean donation size by individuals \textit{for each state} over all races in states that have term-lengths of 8 years. Compute the same statistics only for lawyer-individuals. Present the results in a table. 
-    \item Create a new dataframe/spreadsheet that aggregates all donations at the candidate-race level. Produce histograms that show the frequency of total-contributions by the candidates' political party affiliation.
-    \item Identify the top 10 largest law firm donors in Illinois. Compute a law firm's donations as the sum of all donations to all candidates in all races in the sample. Present the firm names and the sum of their donations in a table.
+    \item Compute the minimum, maximum, median, the 25th and 75th percentiles, and mean donation size by individuals \textit{for each state} over all races in states that have term-lengths of 8 years. Compute the same statistics only for lawyer-individuals. Present the results in a table. 
+    \item Create a new dataframe/spreadsheet that aggregates all donations at the candidate-race level. Produce histograms that show the frequency of total-contributions by the candidates' political party affiliation. Use a log-adjusted horizontal axis for your histogram(s).
+    \item Identify the top 10 largest law firm donors in Illinois. Compute a law firm's donations as the sum of all donations to all candidates in all races in the state. Present the firm names and the sum of their donations in a table.
     \item Identify the top 10 largest non-lawyer-individual donors who donated at least once to any race in a state that has a statutory/constitutional provision to run retention elections for a judge's subsequent terms. Compute an individual's donations as the sum of all donations to all candidates in all races in the sample. Present the individual names, the states in which they donated to races, and the sum of their donations in a table.\footnote{Hint: your table should only contain 10 rows.} 
     \item Conduct some analysis to try to determine:
     \begin{enumerate}[label=\alph*.]
